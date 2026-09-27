@@ -27,7 +27,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       String cityName = 'Al Minya,EG';
       final res = await http.get(
         Uri.parse(
-          'http://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$openWeatherAPIKey',
+          'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$openWeatherAPIKey',
         ),
       );
       final data = jsonDecode(res.body);

@@ -14,19 +14,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
   static const _themePrefKey = 'isDarkMode';
   ThemeMode _themeMode = ThemeMode.dark;
- 
-  
-Future<void> _onTogleTheme() async {
 
-    final newMode =_themeMode == ThemeMode.dark? ThemeMode.light : ThemeMode.dark;
+  Future<void> _onToggleTheme() async {
+    final newMode = _themeMode == ThemeMode.dark
+        ? ThemeMode.light
+        : ThemeMode.dark;
     setState(() {
-      _themeMode= newMode;
+      _themeMode = newMode;
     });
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_themePrefKey, newMode==ThemeMode.dark);
+    await prefs.setBool(_themePrefKey, newMode == ThemeMode.dark);
   }
 
   Future<void> _loadSavedTheme() async {
@@ -36,12 +35,12 @@ Future<void> _onTogleTheme() async {
       _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
     });
   }
- @override
+
+  @override
   void initState() {
     super.initState();
     _loadSavedTheme();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ Future<void> _onTogleTheme() async {
       themeMode: _themeMode,
       debugShowCheckedModeBanner: false,
       home: WeatherScreen(
-        onTogle: _onTogleTheme,
+        onTogle: _onToggleTheme,
         isDarkMode: _themeMode == ThemeMode.dark,
       ),
     );
